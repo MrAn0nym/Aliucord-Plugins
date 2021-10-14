@@ -1,7 +1,7 @@
 # [Timestamps]()
 Use /timestamp to generate a discord timestamp with the current time.
 - With `yyyy` ,`MM`, `dd`, `HH`, `mm` or `ss` you can change the date/time. If left empty it takes the current one
-- With `z` you can change the timezone (valid [timezones](https://github.com/MrAn0nym/Aliucord-Plugins/blob/main/timezones.md))
+- With `z` you can change the timezone (valid [timezones](https://github.com/MrAn0nym/Aliucord-Plugins/blob/main/Timestamps/timezones.md))
 - With `mode` you can change the style of the timestamp
 
 | Mode                                      | Example                      |
