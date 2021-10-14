@@ -30,9 +30,10 @@ subprojects {
     apply(plugin = "com.aliucord.gradle")
 
     aliucord {
-        author("DISCORD USERNAME", 123456789L)
-        updateUrl.set("https://raw.githubusercontent.com/USERNAME/REPONAME/builds/updater.json")
-        buildUrl.set("https://raw.githubusercontent.com/USERNAME/REPONAME/builds/%s.zip")
+        author("Namenlosxy", 339303461877186560L)
+        github("https://www.github.com/MrAn0nym/AliucordPlugins")
+        updateUrl.set("https://raw.githubusercontent.com/MrAn0nym/AliucordPlugins/builds/updater.json")
+        buildUrl.set("https://raw.githubusercontent.com/MrAn0nym/AliucordPlugins/builds/%s.zip")
     }
 
     android {
@@ -58,7 +59,7 @@ subprojects {
 
         implementation("androidx.appcompat:appcompat:1.3.1")
         implementation("com.google.android.material:material:1.4.0")
-        implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+        implementation("androidx.constraintlayout:constraintlayout:2.1.1")
     }
 }
 
