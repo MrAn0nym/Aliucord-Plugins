@@ -1,6 +1,5 @@
 package com.aliucord.plugins;
 
-import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Build.VERSION_CODES;
@@ -113,9 +112,7 @@ public class Timestamps extends Plugin {
             String message =
                 "<t:" + time.toEpochSecond() + ":" + ctx.getStringOrDefault("mode", "f") + ">";
 
-            // Create ClipData and push it
-            ClipData clip = ClipData.newPlainText("Discord timestamp", message);
-            clipboard.setPrimaryClip(clip);
+            Utils.setClipboard("Discord timestamp", message);
 
             // Display confirmation
             result = "Copied " + message + " to your clipboard";

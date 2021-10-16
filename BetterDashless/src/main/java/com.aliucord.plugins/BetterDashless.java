@@ -19,7 +19,8 @@ public class BetterDashless extends Plugin {
 
   @Override
   public void start(Context context) throws NoSuchMethodException {
-    patcher.patch(Channel.class.getDeclaredMethod("m"), new Hook(callFrame -> callFrame.setResult(callFrame.getResult().toString().replace("-", " "))));
+    patcher.patch(Channel.class.getDeclaredMethod("m"), new Hook(
+        callFrame -> callFrame.setResult(callFrame.getResult().toString().replace("-", " "))));
   }
 
   @Override
