@@ -7,7 +7,6 @@ import com.aliucord.Utils;
 import com.aliucord.annotations.AliucordPlugin;
 import com.aliucord.api.SettingsAPI;
 import com.aliucord.entities.Plugin;
-import com.aliucord.patcher.InsteadHook;
 import com.aliucord.patcher.PreHook;
 import com.aliucord.widgets.BottomSheet;
 import com.discord.api.user.NsfwAllowance;
@@ -25,13 +24,18 @@ public class BetterNSFWBypass extends Plugin {
   }
 
   @Override
-  public void start(Context context) throws NoSuchMethodException, NoSuchFieldException {
+  public void start(Context context) throws NoSuchMethodException {
     patcher.patch(WidgetHomeModel.class.getDeclaredMethod("getNsfwAllowed"),
         new PreHook(callFrame -> callFrame
             .setResult(NsfwAllowance.ALLOWED)));
-    patcher.patch(WidgetHomeModel.class.getDeclaredMethod("isNsfwUnConsented"),
-        (settings.getBool("Alwaysconfirm", true)) ? new PreHook(
-            callFrame -> callFrame.setResult(true)) : InsteadHook.DO_NOTHING);
+    var isNsfwUnConsented = patcher
+        .patch(WidgetHomeModel.class.getDeclaredMethod("isNsfwUnConsented"),
+            new PreHook(
+                callFrame -> callFrame.setResult(true)));
+    if (!settings.getBool("Alwaysconfirm", true)) {
+      isNsfwUnConsented.run();
+    }
+
   }
 
   @Override
