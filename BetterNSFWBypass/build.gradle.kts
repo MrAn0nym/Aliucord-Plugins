@@ -4,7 +4,7 @@ aliucord {
 
     changelog.set("""
         # 1.0.2
-        * Channel names not updating when switching channel
+        * Fixed channel names not updating when switching channel
         # 1.0.1
         * When opening nsfw channels you'll get asked if you wish to continue
         * This is optional and can be disabled in the settings
