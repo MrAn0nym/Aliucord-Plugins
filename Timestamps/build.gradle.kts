@@ -3,7 +3,7 @@ description = "Generates unix timestamps for discord and copies it to the clipbo
 aliucord {
     changelog.set("""
         # 1.0.6
-        * Fixed bug when not giving args for the month/hour.
+        * Fixed bug when giving no args for the month/hour
         
         # 1.0.5
         * See below
