@@ -1,10 +1,3 @@
-/*
- * The methods I needed to patch and way to get the channel name are copied from https://github.com/Sepruko/aliucord-plugins/blob/main/plugins/Dashless/src/main/java/com/aliucord/plugins/Dashless.kt
- * Those parts are released under GPL3 (https://github.com/Sepruko/aliucord-plugins/blob/main/LICENSE)
- *
- * Everything else is created by me and falls under the repos license
- */
-
 package com.aliucord.plugins;
 
 import android.content.Context;
