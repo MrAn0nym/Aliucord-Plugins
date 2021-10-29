@@ -82,9 +82,9 @@ public class Timestamps extends Plugin {
               (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
 
           var year = ctx.getLongOrDefault("yyyy", Calendar.getInstance().get(Calendar.YEAR));
-          var month = ctx.getLongOrDefault("MM", Calendar.getInstance().get(Calendar.MONTH));
+          var month = ctx.getLongOrDefault("MM", Calendar.getInstance().get(Calendar.MONTH) + 1);
           var day = ctx.getLongOrDefault("dd", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-          var hour = ctx.getLongOrDefault("HH", Calendar.getInstance().get(Calendar.HOUR));
+          var hour = ctx.getLongOrDefault("HH", Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
           var minute = ctx.getLongOrDefault("mm", Calendar.getInstance().get(Calendar.MINUTE));
           var second = ctx.getLongOrDefault("ss", Calendar.getInstance().get(Calendar.SECOND));
           var zoneString = ctx.getStringOrDefault("z", ZoneId.systemDefault().toString());
