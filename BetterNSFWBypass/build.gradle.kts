@@ -1,8 +1,11 @@
-version = "1.0.2"
+version = "1.0.3"
 description = "Access NSFW channels without verifying your age."
 aliucord {
 
     changelog.set("""
+        # 1.0.3
+        * Code cleanup
+        * Fixed for users without birthday set
         # 1.0.2
         * Fixed channel names not updating when switching channel
         # 1.0.1
