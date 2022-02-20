@@ -1,4 +1,4 @@
-package com.aliucord.plugins;
+package com.github.MrAn0nym;
 
 import android.content.Context;
 import android.widget.TextView;

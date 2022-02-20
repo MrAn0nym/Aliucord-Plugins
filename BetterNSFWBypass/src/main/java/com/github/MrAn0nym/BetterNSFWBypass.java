@@ -1,4 +1,4 @@
-package com.aliucord.plugins;
+package com.github.MrAn0nym;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,9 +13,10 @@ import com.discord.api.user.NsfwAllowance;
 import com.discord.models.user.MeUser;
 import com.discord.views.CheckedSetting;
 import com.discord.views.CheckedSetting.ViewType;
+import com.discord.widgets.home.WidgetHomeHeaderManager;
 import com.discord.widgets.home.WidgetHomeModel;
 
-@AliucordPlugin
+@AliucordPlugin(/*requiresRestart = true*/)
 @SuppressWarnings("unused")
 public class BetterNSFWBypass extends Plugin {
 	
@@ -32,11 +33,15 @@ public class BetterNSFWBypass extends Plugin {
 				new InsteadHook(param -> true));
 		patcher.patch(WidgetHomeModel.class.getDeclaredMethod("getNsfwAllowed"),
 				new InsteadHook(param -> NsfwAllowance.ALLOWED));
+		patcher.patch(WidgetHomeModel.class.getDeclaredMethod("isNsfwUnConsented"),
+				new InsteadHook(param -> true));
+		patcher.patch(WidgetHomeModel.class.getDeclaredMethod("isChannelNsfw"),
+				new InsteadHook(param -> false));
 
-		if (settings.getBool(ALWAYSCONFIRM, true)) {
+		/*if (settings.getBool(ALWAYSCONFIRM, true)) {
 			patcher.patch(WidgetHomeModel.class.getDeclaredMethod("isNsfwUnConsented"),
 					new InsteadHook(param -> true));
-		}
+		}*/
 	}
 	
 	@Override
@@ -58,12 +63,14 @@ public class BetterNSFWBypass extends Plugin {
 			super.onViewCreated(view, bundle);
 			CheckedSetting alwaysConfirm = Utils
 					.createCheckedSetting(requireContext(), ViewType.SWITCH, "NSFW Warning",
-							"Displays a warning before showing the NSFW channel.");
+							"Disabled for now - Displays a warning before showing the NSFW channel.");
 			alwaysConfirm.setChecked(settings.getBool(ALWAYSCONFIRM, true));
-			alwaysConfirm.setOnCheckedListener(checked -> {
+			alwaysConfirm.setClickable(false);
+			alwaysConfirm.setEnabled(false);
+			/*alwaysConfirm.setOnCheckedListener(checked -> {
 				settings.setBool(ALWAYSCONFIRM, checked);
 				Utils.showToast("Please restart Aliucord to apply");
-			});
+			});*/
 			addView(alwaysConfirm);
 		}
 	}
