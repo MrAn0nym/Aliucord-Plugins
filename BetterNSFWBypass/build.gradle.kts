@@ -1,8 +1,12 @@
-version = "1.0.3"
+version = "1.0.4"
 description = "Access NSFW channels without verifying your age."
 aliucord {
 
     changelog.set("""
+        # 1.0.4
+        * Maybe fixed BetterNSFWBypass
+        * Changed package
+        * Alwaysconfirm option disabled for now (will probably be added in future again)
         # 1.0.3
         * Code cleanup
         * Fixed for users without birthday set
