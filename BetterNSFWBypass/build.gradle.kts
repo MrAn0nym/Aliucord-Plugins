@@ -1,8 +1,11 @@
-version = "1.0.4"
+version = "1.0.5"
 description = "Access NSFW channels without verifying your age."
 aliucord {
 
     changelog.set("""
+        # 1.0.5
+        * Fucking fixed it, let's go 
+        * Also sorry for saying that it worked for me all the time, didn't realize that discord apparently thought me 18y old lol
         # 1.0.4
         * Maybe fixed BetterNSFWBypass
         * Changed package
