@@ -3,6 +3,8 @@ description = "Access NSFW channels without verifying your age."
 aliucord {
 
     changelog.set("""
+        # 1.0.6
+        * Fixed for users without birthday set (again)
         # 1.0.5
         * Fucking fixed it, let's go 
         * Also sorry for saying that it worked for me all the time, didn't realize that discord apparently thought me 18y old lol

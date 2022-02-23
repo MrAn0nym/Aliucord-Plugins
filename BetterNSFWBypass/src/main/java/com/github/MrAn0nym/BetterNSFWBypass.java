@@ -11,6 +11,7 @@ import com.aliucord.entities.Plugin;
 import com.aliucord.patcher.InsteadHook;
 import com.aliucord.widgets.BottomSheet;
 import com.discord.api.user.NsfwAllowance;
+import com.discord.models.user.MeUser;
 import com.discord.views.CheckedSetting;
 import com.discord.views.CheckedSetting.ViewType;
 import com.discord.widgets.home.WidgetHomePanelNsfw;
@@ -30,6 +31,8 @@ public class BetterNSFWBypass extends Plugin {
 	@Override
 	public void start(Context context) throws NoSuchMethodException {
 		patcher.patch(WidgetHomePanelNsfw.class.getDeclaredMethod("toggleContainerVisibility", boolean.class, boolean.class, NsfwAllowance.class, ViewStub.class, Function1.class), InsteadHook.DO_NOTHING);
+		patcher.patch(MeUser.class.getDeclaredMethod("getHasBirthday"),
+				new InsteadHook(param -> true));
 	}
 	
 	@Override
