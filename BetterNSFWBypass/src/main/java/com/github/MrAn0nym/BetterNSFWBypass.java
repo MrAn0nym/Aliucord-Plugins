@@ -12,6 +12,7 @@ import com.aliucord.patcher.InsteadHook;
 import com.aliucord.widgets.BottomSheet;
 import com.discord.api.user.NsfwAllowance;
 import com.discord.models.user.MeUser;
+import com.discord.utilities.search.network.SearchQuery;
 import com.discord.views.CheckedSetting;
 import com.discord.views.CheckedSetting.ViewType;
 import com.discord.widgets.home.WidgetHomePanelNsfw;
@@ -33,6 +34,8 @@ public class BetterNSFWBypass extends Plugin {
 		patcher.patch(WidgetHomePanelNsfw.class.getDeclaredMethod("toggleContainerVisibility", boolean.class, boolean.class, NsfwAllowance.class, ViewStub.class, Function1.class), InsteadHook.DO_NOTHING);
 		patcher.patch(MeUser.class.getDeclaredMethod("getHasBirthday"),
 				new InsteadHook(param -> true));
+		// Allow searching
+		patcher.patch(SearchQuery.class.getDeclaredMethod("getIncludeNsfw"), new InsteadHook(methodHookParam -> true));
 	}
 	
 	@Override
