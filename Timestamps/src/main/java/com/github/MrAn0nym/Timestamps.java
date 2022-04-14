@@ -48,7 +48,11 @@ public class Timestamps extends Plugin {
 										false, false, null, timezones, null, false), Utils
 								.createCommandOption(ApplicationCommandType.STRING, "mode",
 										"The mode in which discord will display the date", null, false, false, null,
-										modes, null, false));
+										modes, null, false), Utils
+								.createCommandOption(ApplicationCommandType.STRING, "message",
+										"Append the timestamp to your message"), Utils
+								.createCommandOption(ApplicationCommandType.BOOLEAN, "send",
+										"Send the timestamp instead of copying it"));
 		
 		commands
 				.registerCommand("timestamp", "Generates a unix timestamp and copies it to the clipboard",
@@ -69,6 +73,10 @@ public class Timestamps extends Plugin {
 							var second = ctx.getLongOrDefault("ss", Calendar.getInstance().get(Calendar.SECOND));
 							var zoneString = ctx.getStringOrDefault("z", ZoneId.systemDefault().toString());
 							var mode = ctx.getStringOrDefault("mode", "f");
+							var message = ctx.getStringOrDefault("message", "") + " ";
+							message = message.equals(" ") ? "" : message;
+							var send = ctx.getBoolOrDefault("send", false);
+							
 							try {
 								zone = ZoneId.of(zoneString);
 							} catch (DateTimeException e) {
@@ -81,14 +89,18 @@ public class Timestamps extends Plugin {
 										.of((int) year, (int) month, (int) day, (int) hour, (int) minute, (int) second,
 												0, zone);
 								
-								// Create message
-								String message =
+								// Create timestamp
+								String timestamp =
 										"<t:" + time.toEpochSecond() + ":" + ctx.getStringOrDefault("mode", "f") + ">";
 								
-								Utils.setClipboard("Discord timestamp", message);
+								// Send or copy the message + timestamp
+								if (send) {
+									result = message + timestamp;
+								} else {
+									Utils.setClipboard("Discord timestamp", message + timestamp);
+									result = "Copied \"" + message + timestamp + "\" to your clipboard";
+								}
 								
-								// Display confirmation
-								result = "Copied " + message + " to your clipboard";
 							} catch (DateTimeException e) {
 								
 								// Catch invalid dates/times and send the exception message to the user
@@ -96,7 +108,7 @@ public class Timestamps extends Plugin {
 										"Invalid date\n```java\n" + e.getMessage() + "\n```", null, false);
 							}
 							
-							return new CommandsAPI.CommandResult(result, null, false);
+							return new CommandsAPI.CommandResult(result, null, send);
 						});
 	}
 	

@@ -1,7 +1,11 @@
-version = "1.0.6"
+version = "1.0.7"
 description = "Generates unix timestamps for discord and copies it to the clipboard."
 aliucord {
     changelog.set("""
+        # 1.0.7
+        * Added the "message" option. Use it to append your timestamp to a message
+        * Added the "send" option. Use it to send the timestamp/message directly instead of copying it
+        
         # 1.0.6
         * Fixed bug when giving no args for the month/hour
         
