@@ -43,7 +43,8 @@ public class Timestamps extends Plugin {
 						Utils.createCommandOption(ApplicationCommandType.INTEGER, "dd", "The day"),
 						Utils.createCommandOption(ApplicationCommandType.INTEGER, "HH", "The hour"),
 						Utils.createCommandOption(ApplicationCommandType.INTEGER, "mm", "The minute"),
-						Utils.createCommandOption(ApplicationCommandType.INTEGER, "ss", "The second"), Utils
+						Utils.createCommandOption(ApplicationCommandType.INTEGER, "ss", "The second"),
+						Utils.createCommandOption(ApplicationCommandType.STRING, "AM/PM", "If the timestamp should be AM or PM", null, false, "AM". {0, 1, 3}, {"AM", "PM"}), Utils
 								.createCommandOption(ApplicationCommandType.STRING, "z", "The timezone", null,
 										false, false, null, timezones, null, false), Utils
 								.createCommandOption(ApplicationCommandType.STRING, "mode",
@@ -71,11 +72,14 @@ public class Timestamps extends Plugin {
 									.getLongOrDefault("HH", Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
 							var minute = ctx.getLongOrDefault("mm", Calendar.getInstance().get(Calendar.MINUTE));
 							var second = ctx.getLongOrDefault("ss", Calendar.getInstance().get(Calendar.SECOND));
+							var doPm = ctx.getStringOrDefault("AM/PM", "AM").equals("PM");
 							var zoneString = ctx.getStringOrDefault("z", ZoneId.systemDefault().toString());
 							var mode = ctx.getStringOrDefault("mode", "f");
 							var message = ctx.getStringOrDefault("message", "") + " ";
 							message = message.equals(" ") ? "" : message;
 							var send = ctx.getBoolOrDefault("send", false);
+							
+							if (doPm && hour <= 12) hour += 12;
 							
 							try {
 								zone = ZoneId.of(zoneString);
